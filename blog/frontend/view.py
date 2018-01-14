@@ -4,6 +4,7 @@ frontend_page = Blueprint('frontend', __name__)
 
 
 @frontend_page.route('/')
-def hello_world():
-    return 'hello, world!'
+def index():
+    return  render_template('index.html')
+
 
