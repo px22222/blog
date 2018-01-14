@@ -1,8 +1,42 @@
 .navbar-custom {
     background: transparent;
+    border-bottom: 1px solid #ebebeb !important;
 
 }
 
-.nav a {
-    font-size: 16px !important;
+nav a {
+    font-size: 18px !important;
+    color: #ff5c03 !important;
+}
+
+
+.glyphicon-custom {
+    color: #ff5c03 !important;
+}
+
+.title-custom {
+
+    font-size: 24px !important;
+    font-style: italic
+}
+
+.blog-area {
+    margin-top: 81px;
+    word-wrap: break-word
+}
+
+.blog-area h4{
+    color: #1a1a1a!important;
+    font-family: fantasy
+}
+
+.blog-area p {
+    color: #555;
+}
+
+
+.navbar-fixed-custom{
+    right: 0;
+    left: 0;
+    z-index: 1030
 }

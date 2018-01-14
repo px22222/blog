@@ -9,20 +9,21 @@
      <link href="static/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
-<body>
-
+<body >
+{#style="background-image: url('static/backgroud.jpg')"#}
     <div>
-        <nav class="navbar navbar-custom navbar-fixed-top">
+        <nav class="navbar navbar-custom navbar-fixed-custom">
             <div class="container">
+                <div class="col-md-12">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header page-scroll">
                     <button type="button" class="navbar-toggle" data-toggle="collapse"
                             data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span>
-                         <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                         <span class="glyphicon glyphicon-custom glyphicon-align-justify" aria-hidden="true"></span>
                         <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="index.html">Beginning</a>
+                    <a class="navbar-brand title-custom" href="index.html">Andy peng's blog</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -40,52 +41,75 @@
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
+
+                </div>
+
             </div>
             <!-- /.container -->
         </nav>
     </div>
 
 
-    <div class="container" style="margin-top: 81px">
+    <div class="container blog-area" >
 
-        <div  class="col-md-9" >
-            <div style="margin-top: 20px">
+        <div  class="col-md-8" >
+            <div style="margin-top: 20px; ">
             <h4>
-                blog title &nbsp&nbsp 2018.1.30
+                深拷贝，浅拷贝 &nbsp&nbsp 2018.1.30
             </h4>
 
             <p>
-                pexample blogjhkhkhkhhkkhkhkhkhhkhkhkhkhkhkkhkhkkkhkhkh
+                摘要: 1. 对数字和字符串而言，浅拷贝和深拷贝没有意义，都是指向同一内存地址。
+                2. 浅拷贝，在内存中只额外创建第一层数据 3. 深拷贝 深拷贝，
+                在内存中将所有的数据重新创建一份（排除最后一层，即：python内部对字符串和数字的优化）
 
             </p>
+
+             <div style="border-bottom: 1px solid #c0c0c052; margin-top: 25px"></div>
             </div>
 
 
-            <div style="margin-top: 40px">
+            <div style="margin-top: 50px">
             <h4>
-                blog title &nbsp&nbsp 2018.1.30
+                深拷贝，浅拷贝 &nbsp&nbsp 2018.1.30
             </h4>
 
             <p>
-                pexample blogjhkhkhkhhkkhkhkhkhhkhkhkhkhkhkkhkhkkkhkhkh
+                摘要: 1. 对数字和字符串而言，浅拷贝和深拷贝没有意义，都是指向同一内存地址。
+                2. 浅拷贝，在内存中只额外创建第一层数据 3. 深拷贝 深拷贝，
+                在内存中将所有的数据重新创建一份（排除最后一层，即：python内部对字符串和数字的优化）
 
             </p>
+            <div style="border-bottom: 1px solid #c0c0c052; margin-top: 25px"></div>
             </div>
 
-            <div style="margin-top: 40px">
+
+            <div style="margin-top: 50px">
             <h4>
-                blog title &nbsp&nbsp 2018.1.30
+                深拷贝，浅拷贝 &nbsp&nbsp 2018.1.30
             </h4>
 
             <p>
-                pexample blogjhkhkhkhhkkhkhkhkhhkhkhkhkhkhkkhkhkkkhkhkh
+                摘要: 1. 对数字和字符串而言，浅拷贝和深拷贝没有意义，都是指向同一内存地址。
+                2. 浅拷贝，在内存中只额外创建第一层数据 3. 深拷贝 深拷贝，
+                在内存中将所有的数据重新创建一份（排除最后一层，即：python内部对字符串和数字的优化）
 
             </p>
+           <div style="border-bottom: 1px solid #c0c0c052; margin-top: 25px"></div>
             </div>
+
 
         </div>
 
-        <div  class="col-md-3">
+        <div class="col-md-2"></div>
+        <div  class="col-md-2">
+            <h4>category</h4>
+            <ul>
+                <li><a href="#">python</a></li>
+                <li><a href="#">linux</a></li>
+                <li><a href="#">web</a></li>
+                <li><a href="#">运维</a></li>
+            </ul>
 
         </div>
 
