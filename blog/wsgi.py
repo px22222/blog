@@ -21,7 +21,7 @@ def create_app(config_file=None):
     app.config.from_pyfile('blog.conf')
 
     db.init_app(app)
-    admin = Admin(app, base_template='blog_base.html', template_mode="bootstrap3",
+    admin = Admin(app, base_template='admin_base.html', template_mode="bootstrap3",
                   index_view=BlogHomeView(name='Blog Admin Portal', url='/blog/admin'))
     admin.add_view(EntriesModelView(Entries, db.session))
     admin.add_view(CategoryModelView(Category, db.session))
