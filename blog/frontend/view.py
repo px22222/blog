@@ -3,8 +3,7 @@ from flask import (current_app, Blueprint, render_template,
 from flask_security import  current_user
 from flask_admin.contrib.sqla import ModelView
 from ..models import db, Entries, Category
-from sqlalchemy import func
-
+from sqlalchemy import func, extract
 
 frontend_page = Blueprint('frontend', __name__, static_url_path='/')
 
@@ -15,9 +14,11 @@ def public_context():
     # select c.name, count(e.id) from category  c left join entries  e  on c.id = e.categorys group by c.name;
     category_entries_count = db.session.query(Category.id, Category.name, func.count(Entries.categorys)).join('entries').\
         group_by(Category.name).all()
-    print (db.session.query(Entries.create_date.strftime("%Y-%m")).all())
-    print (db.session.query(Entries.create_date).first()[0].strftime("%Y-%m"))
-    context.update({'category_entries_count': category_entries_count})
+    archive_count = db.session.query(extract('year', Entries.create_date).label('year'),
+                            extract('month', Entries.create_date).label('month'),
+                            func.count('*')).group_by('year', 'month').all()
+    context.update({'category_entries_count': category_entries_count,
+                   "entries_archive_count": archive_count})
     return context
 
 
@@ -42,7 +43,14 @@ def category_page(category_id):
     entries = Category.query.filter_by(id=category_id).first().entries
     context = public_context()
     context.update({"category_entries": entries})
-    return render_template('category_page.html', **context )
+    return render_template('category_page.html', **context)
+
+
+@frontend_page.route('/archive/<string:year_month>')
+def archive_page(year_month):
+    pass
+
+
 
 
 

@@ -123,10 +123,10 @@
 
             <h4 style="margin-top: 30px">Archive</h4>
             <ul style="margin-left: -20px">
-                {% for c_e_count in category_entries_count %}
+                {% for e_a_count in entries_archive_count %}
                     <li>
-                        <a href="{{ url_for('frontend.category_page', category_id=c_e_count[0]) }}">
-                        {{ c_e_count[1] }}({{ c_e_count[2] }})
+                        <a href="{{ url_for('frontend.archive_page', year_month=e_a_count[0])}}">
+                        {{ e_a_count[0] }}年{{ e_a_count[1] }}月({{ e_a_count[2] }})
                         </a>
                     </li>
                 {%  endfor %}

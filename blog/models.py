@@ -1,5 +1,5 @@
 from flask_sqlalchemy import  SQLAlchemy
-
+from _datetime import datetime
 
 db = SQLAlchemy()
 
@@ -34,8 +34,8 @@ class Entries(db.Model):
     publish_status = db.Column(db.Boolean(), default=False)
     allow_reply = db.Column(db.Boolean(), default=False)
     stick = db.Column(db.Boolean(), default=False)
-    create_date = db.Column(db.DateTime(), nullable=False)
-    update_date = db.Column(db.DateTime(), nullable=False)
+    create_date = db.Column(db.DateTime(), nullable=False, default=datetime.now)
+    update_date = db.Column(db.DateTime(), nullable=False, default=datetime.now, onupdate=datetime.now)
     comment = db.relationship('Comment',  backref='entries', lazy=True)
     tags = db.relationship('Tag', secondary=Entries_Tags, back_populates="entries")
 

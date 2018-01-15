@@ -59,7 +59,8 @@ class SecureModelView(ModelView):
 
 class EntriesModelView(SecureModelView):
 
-    form_excluded_columns = ['comment', 'create_date', 'update_date']
+    form_excluded_columns = ['comment', ]
+                             #'create_date', 'update_date']
 
 
     form_widget_args = {
@@ -71,12 +72,12 @@ class EntriesModelView(SecureModelView):
     can_view_details = True
 
     def on_model_change(self, form, model, is_created):
-        if is_created:
-            model.create_date = datetime.datetime.now()
-            model.update_date = datetime.datetime.now()
-
-        else:
-            model.update_date = datetime.datetime.now()
+        # if is_created:
+        #     model.create_date = datetime.datetime.now()
+        #     model.update_date = datetime.datetime.now()
+        #
+        # else:
+        #     model.update_date = datetime.datetime.now()
 
         return super().on_model_change(form, model, is_created)
 
