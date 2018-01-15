@@ -1,0 +1,6 @@
+{% extends 'admin/base.html' %}
+{% block user_session %}
+    {% if current_user.is_authenticated %}
+        <a href="{{ url_for('security.logout', next='/blog/admin') }}">log out</a>
+    {% endif %}
+{% endblock %}
