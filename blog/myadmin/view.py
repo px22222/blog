@@ -2,7 +2,8 @@ from flask import (current_app, Blueprint, render_template,
                    abort, redirect, url_for, request)
 from flask_security import  current_user
 from flask_admin.contrib.sqla import ModelView
-
+from flask_admin import AdminIndexView, expose
+import  datetime
 
 admin_page = Blueprint('admin_page', __name__)
 
@@ -11,7 +12,16 @@ admin_page = Blueprint('admin_page', __name__)
 def hello_admin():
     return 'hello, admin'
 
-class securemodelview(ModelView):
+
+class BlogHomeView(AdminIndexView):
+    @expose('/')
+    def index(self):
+        print(current_user.is_active)
+        if current_user.is_anonymous or not current_user.is_authenticated:
+            return redirect(url_for('security.login', next=request.url))
+        return  self.render('AdminIndex.html')
+
+class SecureModelView(ModelView):
     can_create = True
     def is_accessible(self):
         print (current_user.is_active)
@@ -47,5 +57,40 @@ class securemodelview(ModelView):
 
 
 
-class entries_modelview(securemodelview):
-    pass
+class EntriesModelView(SecureModelView):
+
+    form_excluded_columns = ['comment', 'create_date', 'update_date']
+
+
+    form_widget_args = {
+        'content':{
+            'style': 'height: 400px'
+        }
+    }
+
+    can_view_details = True
+
+    def on_model_change(self, form, model, is_created):
+        if is_created:
+            model.create_date = datetime.datetime.now()
+            model.update_date = datetime.datetime.now()
+
+        else:
+            model.update_date = datetime.datetime.now()
+
+        return super().on_model_change(form, model, is_created)
+
+
+class CategoryModelView(SecureModelView):
+    form_excluded_columns = ['entries']
+
+
+
+class TagModelView(SecureModelView):
+    form_excluded_columns = ['entries']
+
+
+class CommentModelView(SecureModelView):
+    form_excluded_columns = ['entries']
+
+

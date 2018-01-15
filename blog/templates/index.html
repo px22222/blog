@@ -20,7 +20,7 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse"
                             data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span>
-                         <span class="glyphicon glyphicon-custom glyphicon-align-justify" aria-hidden="true"></span>
+                         <span class="glyphicon glyphicon-menu-hamburger glyphicon-custom" aria-hidden="true"></span>
                         <i class="fa fa-bars"></i>
                     </button>
                     <a class="navbar-brand title-custom" href="index.html">Andy peng's blog</a>
@@ -51,55 +51,39 @@
 
     <div  class="head" style="background-image: url('static/yemei.jpg')"></div>
     <div class="container blog-area" >
-
+    {% block content_area %}
         <div  class="col-md-8" >
-            <div style="margin-top: 20px; ">
-            <h4>
-                深拷贝，浅拷贝 &nbsp&nbsp 2018.1.30
-            </h4>
+            {% for entries in blogs %}
 
-            <p>
-                摘要: 1. 对数字和字符串而言，浅拷贝和深拷贝没有意义，都是指向同一内存地址。
-                2. 浅拷贝，在内存中只额外创建第一层数据 3. 深拷贝 深拷贝，
-                在内存中将所有的数据重新创建一份（排除最后一层，即：python内部对字符串和数字的优化）
+                {% if loop.index > 1 %}
 
-            </p>
+                    <div style="margin-top: 50px; ">
 
-             <div style="border-bottom: 1px solid #c0c0c052; margin-top: 25px"></div>
-            </div>
+                {% else %}
+                    <div style="margin-top: 20px; ">
+                {% endif %}
+                        <h4> {{  entries.title }} </h4>
 
+                        <p>
+                             <a href="{{ url_for('frontend.blog_detail', blog_id = entries.id)}}">
+                                 {{ entries.content | truncate(200,True, end='...')}}
+                             </a>
+                        </p>
 
-            <div style="margin-top: 50px">
-            <h4>
-                深拷贝，浅拷贝 &nbsp&nbsp 2018.1.30
-            </h4>
+                        <div class="postscript-custom">
+                            Posted by peng xuan {{ entries.update_date  }}
+                        </div>
 
-            <p>
-                摘要: 1. 对数字和字符串而言，浅拷贝和深拷贝没有意义，都是指向同一内存地址。
-                2. 浅拷贝，在内存中只额外创建第一层数据 3. 深拷贝 深拷贝，
-                在内存中将所有的数据重新创建一份（排除最后一层，即：python内部对字符串和数字的优化）
-
-            </p>
-            <div style="border-bottom: 1px solid #c0c0c052; margin-top: 25px"></div>
-            </div>
+                        <div style="border-bottom: 1px solid #c0c0c052; margin-top: 25px"></div>
+                    </div>
 
 
-            <div style="margin-top: 50px">
-            <h4>
-                深拷贝，浅拷贝 &nbsp&nbsp 2018.1.30
-            </h4>
-
-            <p>
-                摘要: 1. 对数字和字符串而言，浅拷贝和深拷贝没有意义，都是指向同一内存地址。
-                2. 浅拷贝，在内存中只额外创建第一层数据 3. 深拷贝 深拷贝，
-                在内存中将所有的数据重新创建一份（排除最后一层，即：python内部对字符串和数字的优化）
-
-            </p>
-           <div style="border-bottom: 1px solid #c0c0c052; margin-top: 25px"></div>
-            </div>
+            {% endfor %}
 
 
         </div>
+    {% endblock %}
+
 
         <div class="col-md-2"></div>
         <div  class="col-md-2">
@@ -114,10 +98,8 @@
         </div>
 
 
+
     </div>
-
-
-
     <script src="static/bootstrap3/js/jquery-3.3.1.min.js"></script>
     <script src="static/bootstrap3/js/bootstrap.min.js"></script>
 </body>
