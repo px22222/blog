@@ -9,7 +9,7 @@ from .myadmin.view import admin_page
 def create_app(config_file=None):
     pymysql.install_as_MySQLdb()
     app = Flask(__name__, instance_relative_config=True,
-                instance_path='/tmp/test/blog/blog/config')
+                instance_path='D:\\Users\\px222\\PycharmProjects\\flasker\\blog\\config')
 
     app.config.from_pyfile('blog.conf')
 
