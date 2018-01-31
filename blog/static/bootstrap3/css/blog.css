@@ -40,3 +40,17 @@ nav a {
     left: 0;
     z-index: 1030
 }
+
+.head{
+    background: #222;
+    background-repeat: no-repeat;
+    background-position: center 0;
+    -webkit-background-size: cover;
+    background-size: cover;
+    padding: 138px 0 0;
+    text-align: center;
+    min-height: 400px;
+    margin-top: -20px;
+    position: relative;
+
+}
