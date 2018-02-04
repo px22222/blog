@@ -1,17 +1,20 @@
 .navbar-custom {
     background: transparent;
-    border-bottom: 1px solid #ebebeb !important;
+    /*border-bottom: 1px solid #ebebeb !important;*/
 
 }
 
 nav a {
     font-size: 18px !important;
-    color: #ff5c03 !important;
+    color: #FFF !important;
 }
 
+nav ul li:hover a:hover {
+   background-color: #ff5c03;
+}
 
 .glyphicon-custom {
-    color: #ff5c03 !important;
+    color: #fff !important;
     font-size: 24px !important;
 }
 
@@ -63,3 +66,5 @@ nav a {
     color: #9d9d9d;
     font-style: italic
 }
+
+

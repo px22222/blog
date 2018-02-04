@@ -3,14 +3,14 @@
 {% block content_area %}
     <div  class="col-md-8" >
         <div style="">
-            <h4> {{  entries.title }} </h4>
+            <h4> <strong>{{ blog_entries.title }}</strong> </h4>
 
             <p>
-                     {{ entries.content }}
+                     {{ blog_entries.content }}
             </p>
 
             <div class="postscript-custom">
-                Posted by peng xuan {{ entries.update_date  }}
+                Posted by peng xuan {{ blog_entries.update_date  }}
             </div>
 
             <div style="border-bottom: 1px solid #c0c0c052; margin-top: 25px"></div>

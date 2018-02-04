@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>pengx's blog</title>
-    <link href="{{ url_for('static', filename='bootstrap3/css/blog.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='bootstrap3/css/blog10.css') }}" rel="stylesheet">
      <link href="{{ url_for('static',filename='bootstrap3/css/bootstrap.min.css') }}" rel="stylesheet">
 
 </head>
 <body >
     <div>
+
+    <div  class="head" style="background-image: url('{{ url_for('static', filename='yemei.jpg') }}');
+            padding: 15px 0 0 !important; ">
         <nav class="navbar navbar-custom navbar-fixed-custom">
             <div class="container">
                 <div class="col-md-12">
@@ -46,9 +49,19 @@
             </div>
             <!-- /.container -->
         </nav>
+
+        <div class="col-md-8 col-md-offset-2" style="font-size: 50px;color: #fff;
+            text-align: center; font-weight: 100">
+            记录学习点滴
+        </div>
+
     </div>
 
-    <div  class="head" style="background-image: url('{{ url_for('static', filename='yemei.jpg') }}')"></div>
+
+    </div>
+
+
+
     <div class="container blog-area" >
     {% block content_area %}
         <div  class="col-md-8" >
@@ -57,7 +70,7 @@
                 {% if loop.index > 1 %}
 
                     <div style="margin-top: 50px; ">
-                        <h4> {{  entries.title }} </h4>
+                        <h4> <strong>{{  entries.title }}</strong> </h4>
 
                         <p>
                              <a href="{{ url_for('frontend.blog_detail', blog_id = entries.id)}}">
@@ -74,8 +87,8 @@
 
 
                 {% else %}
-                    <div style="">
-                        <h4> {{  entries.title }} </h4>
+                    <div >
+                        <h4><strong>{{  entries.title }}</strong> </h4>
                         <p>
                              <a href="{{ url_for('frontend.blog_detail', blog_id = entries.id)}}">
                                  {{ entries.content | truncate(200,True, end='...')}}
@@ -97,20 +110,44 @@
 
         <div class="col-md-2"></div>
         <div  class="col-md-2">
-            <h4>category</h4>
+            <h4>Category</h4>
             <ul style="margin-left: -20px">
-                <li><a href="#">python</a></li>
-                <li><a href="#">linux</a></li>
-                <li><a href="#">web</a></li>
-                <li><a href="#">运维</a></li>
+                {% for c_e_count in category_entries_count %}
+                    <li>
+                        <a href="{{ url_for('frontend.category_page', category_id=c_e_count[0]) }}">
+                        {{ c_e_count[1] }}({{ c_e_count[2] }})
+                        </a>
+                    </li>
+                {%  endfor %}
+            </ul>
+
+            <h4 style="margin-top: 30px">Archive</h4>
+            <ul style="margin-left: -20px">
+                {% for c_e_count in category_entries_count %}
+                    <li>
+                        <a href="{{ url_for('frontend.category_page', category_id=c_e_count[0]) }}">
+                        {{ c_e_count[1] }}({{ c_e_count[2] }})
+                        </a>
+                    </li>
+                {%  endfor %}
             </ul>
 
         </div>
-
-
-
     </div>
+
+    <div class="container">
+        <div class="col-md-8 col-md-offset-2"  style="text-align: center; margin-bottom: 20px">
+        Copyright ©2017-2018 Peng Xuan Corporation, All Rights Reserved
+        </div>
+    </div>
+
+    <script>
+    </script>
     <script src="{{ url_for('static', filename='bootstrap3/js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{ url_for('static', filename='bootstrap3/js/bootstrap.min.js')}}"></script>
+
+    <script>
+
+    </script>
 </body>
 </html>
