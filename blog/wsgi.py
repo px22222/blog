@@ -13,11 +13,11 @@ from .myadmin.models import  Role, User
 def create_app(config_file=None):
     pymysql.install_as_MySQLdb()
     #  my windows pc's config
-    # app = Flask(__name__, instance_relative_config=True,
-    #             instance_path='D:\\Users\px222\\PycharmProjects\\flasker\\blog\\config')
-
     app = Flask(__name__, instance_relative_config=True,
-                instance_path='/tmp/test/blog/blog/config')
+                instance_path='D:\\Users\px222\\PycharmProjects\\flasker\\blog\\config')
+
+    # app = Flask(__name__, instance_relative_config=True,
+    #             instance_path='/tmp/test/blog/blog/config')
     app.config.from_pyfile('blog.conf')
 
     db.init_app(app)

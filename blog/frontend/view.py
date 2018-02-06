@@ -48,7 +48,11 @@ def category_page(category_id):
 
 @frontend_page.route('/archive/<string:year_month>')
 def archive_page(year_month):
-    pass
+    print(year_month)
+    per_month_entries = db.session.query(Entries).filter(Entries.create_date.startswith(year_month)).all()
+    context = public_context()
+    context.update({"per_month_entries": per_month_entries})
+    return  render_template('PerMonthArchivePage.html', **context)
 
 
 

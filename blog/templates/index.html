@@ -125,7 +125,12 @@
             <ul style="margin-left: -20px">
                 {% for e_a_count in entries_archive_count %}
                     <li>
-                        <a href="{{ url_for('frontend.archive_page', year_month=e_a_count[0])}}">
+                        {% if e_a_count[1] < 10 %}
+                            {% set year_month_value = "%s-%s" | format(e_a_count[0], 0 ~ e_a_count[1]) %}
+                        {% else %}
+                            {% set year_month_value = "%s-%s" | format(e_a_count[0], e_a_count[1]) %}
+                        {% endif %}
+                        <a href="{{ url_for('frontend.archive_page', year_month=year_month_value)}}">
                         {{ e_a_count[0] }}年{{ e_a_count[1] }}月({{ e_a_count[2] }})
                         </a>
                     </li>
