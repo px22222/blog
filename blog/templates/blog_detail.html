@@ -5,9 +5,11 @@
         <div style="">
             <h4> <strong>{{ blog_entries.title }}</strong> </h4>
 
-            <p>
-                     {{ blog_entries.content }}
-            </p>
+
+            <div style="margin-top: 50px">
+                {{ blog_entries.content | safe}}
+            </div>
+
 
             <div class="postscript-custom">
                 Posted by peng xuan {{ blog_entries.update_date  }}

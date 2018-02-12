@@ -3,6 +3,8 @@ from flask import (current_app, Blueprint, render_template,
 from flask_security import  current_user
 from flask_admin.contrib.sqla import ModelView
 from flask_admin import AdminIndexView, expose
+from wtforms import TextAreaField
+from wtforms.widgets import TextArea
 import  datetime
 
 admin_page = Blueprint('admin_page', __name__)
@@ -55,6 +57,18 @@ class SecureModelView(ModelView):
         return  super().on_model_change(form, model, is_created)
 
 
+class CKTextAreaWidget(TextArea):
+    def __call__(self, field, **kwargs):
+        if kwargs.get('class'):
+            kwargs['class'] += ' ckeditor'
+        else:
+            kwargs.setdefault('class', 'ckeditor')
+        return super(CKTextAreaWidget, self).__call__(field, **kwargs)
+
+
+class CKTextAreaField(TextAreaField):
+    widget = CKTextAreaWidget()
+
 
 
 class EntriesModelView(SecureModelView):
@@ -69,6 +83,9 @@ class EntriesModelView(SecureModelView):
         }
     }
 
+    form_overrides = {
+        'content': CKTextAreaField
+    }
     can_view_details = True
 
     def on_model_change(self, form, model, is_created):

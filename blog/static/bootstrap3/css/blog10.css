@@ -35,7 +35,7 @@ nav ul li:hover a:hover {
     font-family: fantasy
 }
 
-.blog-area p a {
+.blog-area #blog-list a {
     color: #777;
 }
 
