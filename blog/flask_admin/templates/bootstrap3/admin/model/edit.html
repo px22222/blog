@@ -33,15 +33,6 @@
     {{ lib.render_form(form, return_url, extra(), form_opts) }}
   {% endblock %}
 {% endblock %}
-{% block ckeditor_js  %}
-<script>
-    var editor1 = CKEDITOR.replace('content')
-    var text = CKEDITOR.instances.content.getData()
-    console.log(text)
-    var plain_text = CKEDITOR.document.getById('content').getText()
-    console.log(plain_text)
-</script>
-{% endblock %}
 
 {% block tail %}
   {{ super() }}

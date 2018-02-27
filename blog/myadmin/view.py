@@ -80,8 +80,18 @@ class EntriesModelView(SecureModelView):
     form_widget_args = {
         'content':{
             'style': 'height: 400px'
+        },
+
+        'plain_text':{
+            'style': 'display: none'
         }
     }
+
+    edit_template = 'entires_edit.html'
+
+
+    #
+    # extra_js = [ '/blog/admin/static/custom_js.js']
 
     form_overrides = {
         'content': CKTextAreaField

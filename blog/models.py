@@ -30,6 +30,7 @@ class Entries(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(256), nullable=False)
     content = db.Column(db.Text, nullable=False)
+    plain_text = db.Column(db.Text, nullable=True)
     categorys = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
     publish_status = db.Column(db.Boolean(), default=False)
     allow_reply = db.Column(db.Boolean(), default=False)

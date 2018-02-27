@@ -1,0 +1,10 @@
+{% extends 'admin/model/edit.html' %}
+
+{% block ckeditor_js %}
+    <script>
+        editor = CKEDITOR.replace('content');
+        editor.on( 'contentDom', function() {
+            console.log( editor.document.getBody().getText() );
+        } );
+    </script>
+{% endblock %}

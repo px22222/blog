@@ -1,4 +1,5 @@
 from flask_security import  SQLAlchemyUserDatastore
+from flask_migrate import  Migrate
 from .wsgi import create_app
 from .models import db
 from .myadmin.models import User, Role
@@ -7,6 +8,7 @@ from .myadmin.models import User, Role
 
 app = create_app()
 
+migrate = Migrate(app, db)
 
 @app.cli.command()
 def init_db():
