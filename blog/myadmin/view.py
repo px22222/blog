@@ -60,9 +60,9 @@ class SecureModelView(ModelView):
 class CKTextAreaWidget(TextArea):
     def __call__(self, field, **kwargs):
         if kwargs.get('class'):
-            kwargs['class'] += ' ckeditor'
+            kwargs['class'] += ' ckeditor1'
         else:
-            kwargs.setdefault('class', 'ckeditor')
+            kwargs.setdefault('class', 'ckeditor1')
         return super(CKTextAreaWidget, self).__call__(field, **kwargs)
 
 

@@ -7,6 +7,7 @@ from .frontend.view import frontend_page
 from .myadmin.view import (admin_page, EntriesModelView, BlogHomeView, \
                             CategoryModelView, CommentModelView, TagModelView)
 from .myadmin.models import  Role, User
+from .jinja2.custom_filter import  clipping_content
 
 
 
@@ -41,5 +42,7 @@ def create_app(config_file=None):
             h=admin_helpers,
             get_url=url_for
         )
+    env = app.jinja_env
+    env.filters['clipping_content'] = clipping_content
     return  app
 
