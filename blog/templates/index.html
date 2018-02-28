@@ -74,7 +74,7 @@
 
 
                          <a href="{{ url_for('frontend.blog_detail', blog_id = entries.id)}}">
-                             {{ entries.content  | clipping_content }}
+                             {{ entries.plain_text }}
                          </a>
 
                         <div class="postscript-custom">
@@ -91,7 +91,7 @@
 
                          <a href="{{ url_for('frontend.blog_detail', blog_id = entries.id)}}">
 {#                            {{ entries.content | truncate(200,True, end='...') }}#}
-                              {{ entries.content  | clipping_content }}
+                              {{ entries.plain_text }}
 
                          </a>
 

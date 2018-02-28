@@ -145,6 +145,39 @@
   </div>
 {% endmacro %}
 
+
+{% macro custom_render_field(form, field, kwargs={}, caller=None) %}
+  {% set direct_error = h.is_field_error(field.errors) %}
+  <div class="form-group{{ ' has-error' if direct_error else '' }}">
+    <label for="{{ field.id }}" class="col-md-2 control-label" style="display: None">{{ field.label.text }}
+        {% if h.is_required_form_field(field) %}
+          <strong style="color: red">&#42;</strong>
+        {%- else -%}
+          &nbsp;
+        {%- endif %}
+    </label>
+    <div class="{{ kwargs.get('column_class', 'col-md-10') }}">
+      {% set _dummy = kwargs.setdefault('class', 'form-control') %}
+      {{ field(**kwargs)|safe }}
+      {% if field.description %}
+      <p class="help-block">{{ field.description|safe }}</p>
+      {% endif %}
+      {% if direct_error %}
+        <ul class="help-block input-errors">
+        {% for e in field.errors if e is string %}
+          <li>{{ e }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+    {% if caller %}
+      {{ caller(form, field, direct_error, kwargs) }}
+    {% endif %}
+  </div>
+{% endmacro %}
+
+
+
 {% macro render_header(form, text) %}
     <h3>{{ text }}</h3>
 {% endmacro %}
@@ -183,6 +216,14 @@
     </form>
 {% endmacro %}
 
+
+{% macro entries_form_tag(form=None, action=None) %}
+    <form action="{{ action or '' }}" method="POST" role="form" onsubmit="add_plain_text()" class="admin-form form-horizontal" enctype="multipart/form-data">
+      {{ caller() }}
+    </form>
+{% endmacro %}
+
+
 {% macro render_form_buttons(cancel_url, extra=None, is_modal=False) %}
     <hr>
     <div class="form-group">
@@ -204,6 +245,14 @@
         {{ render_form_buttons(cancel_url, extra, is_modal) }}
     {% endcall %}
 {% endmacro %}
+
+{% macro entries_render_form(form, cancel_url, extra=None, form_opts=None, action=None, is_modal=False) -%}
+    {% call entries_form_tag(action=action) %}
+        {{ render_form_fields(form, form_opts=form_opts) }}
+        {{ render_form_buttons(cancel_url, extra, is_modal) }}
+    {% endcall %}
+{% endmacro %}
+
 
 {% macro form_css() %}
   <link href="{{ admin_static.url(filename='vendor/select2/select2.css', v='3.5.2') }}" rel="stylesheet">

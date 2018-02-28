@@ -6,6 +6,8 @@ from flask_admin import AdminIndexView, expose
 from wtforms import TextAreaField
 from wtforms.widgets import TextArea
 import  datetime
+from flask_admin.form import rules
+
 
 admin_page = Blueprint('admin_page', __name__)
 
@@ -46,6 +48,7 @@ class SecureModelView(ModelView):
                 return redirect(url_for('security.login', next=request.url))
 
     def is_visible(self):
+        print (self.get_list_columns())
         return True
 
     def on_model_change(self, form, model, is_created):
@@ -83,11 +86,17 @@ class EntriesModelView(SecureModelView):
         },
 
         'plain_text':{
-            'style': 'display: none'
+            'style': 'display: none',
         }
     }
 
-    edit_template = 'entires_edit.html'
+
+    form_edit_rules = ['title','content', rules.Field('plain_text',
+                                    render_field='lib.custom_render_field'),
+                       'publish_status', 'allow_reply', 'stick', 'tags',
+                       'category',]
+
+    edit_template = 'entries_edit.html'
 
 
     #
