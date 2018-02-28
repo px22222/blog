@@ -7,11 +7,19 @@
 
 {% block ckeditor_js %}
     <script>
-        editor = CKEDITOR.replace('content');
+        editor = CKEDITOR.replace('content',{ height: 800});
+        editor.config.extraPlugins = 'codesnippet';
+        editor.config.codeSnippet_theme = 'idea';
+        editor.config.codeSnippet_languages = {
+            javascript: 'JavaScript',
+            python: 'python',
+            bash: 'bash',
+            php: 'PHP'
+        };
 
         function add_plain_text() {
             var plain_text = editor.document.getBody().getText();
-            alert(plain_text);
+{#            alert(plain_text);#}
             $("#plain_text").text(plain_text);
 
 

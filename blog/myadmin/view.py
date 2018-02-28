@@ -76,14 +76,14 @@ class CKTextAreaField(TextAreaField):
 
 class EntriesModelView(SecureModelView):
 
-    form_excluded_columns = ['comment', ]
+
+    # form_excluded_columns = ['comment', ]
                              #'create_date', 'update_date']
 
+    column_exclude_list = ['comment', 'content', 'plain_text']
 
     form_widget_args = {
-        'content':{
-            'style': 'height: 400px'
-        },
+
 
         'plain_text':{
             'style': 'display: none',
