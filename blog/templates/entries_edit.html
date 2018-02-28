@@ -1,0 +1,22 @@
+{% extends 'admin/model/edit.html' %}
+
+
+{% block edit_form %}
+{{ lib.entries_render_form(form, return_url, extra(), form_opts) }}
+{% endblock %}
+
+{% block ckeditor_js %}
+    <script>
+        editor = CKEDITOR.replace('content');
+
+        function add_plain_text() {
+            var plain_text = editor.document.getBody().getText();
+            alert(plain_text);
+            $("#plain_text").text(plain_text);
+
+
+
+        }
+
+    </script>
+{% endblock %}
